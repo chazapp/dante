@@ -47,3 +47,9 @@ Feed the results to a running mongodb instance.
 ```bash
 ./main feed --db mongodb://localhost:27017 --file dataset.txt --name "BookName"
 ```
+
+
+## Inspiration
+
+Tigbra
+![TigbraProject](https://i.redd.it/n11syzm0v6x21.jpg)
