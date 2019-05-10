@@ -1,4 +1,4 @@
-#Tigbra
+# Tigbra
 
 An ELK installation for class notes index and searching.
 
@@ -29,15 +29,21 @@ A theme
 
 ## Usage
 
+Print result to the standard output.
 ```bash
 $ GO111MODULE=on go mod vendor
 $ go build cmd/cli/main.go
-$ ./main parse -f dataset.txt 
+$ ./main print -f dataset.txt 
 ```
 
 Example output: 
 ```json
-  {"category":"1. A category name", "theme":"Condition féminine","quote":"A citation","page":"11"}
-  {"category":"1. A category name", "theme":"Condition féminine","quote":"A citation","page":"11"}
-  {"category":"1. A category name", "theme":"Condition féminine","quote":"A citation","page":"11"}
+  {"category":"1. A category name", "theme":"A theme","quote":"A citation","page":40}
+  {"category":"1. A category name", "theme":"A theme","quote":"A citation","page":41}
+  {"category":"1. A category name", "theme":"A theme","quote":"A citation","page":42}
 ``` 
+
+Feed the results to a running mongodb instance.
+```bash
+./main feed --db mongodb://localhost:27017 --file dataset.txt --name "BookName"
+```
