@@ -5,13 +5,14 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 type Doc struct {
 	Category string `json:"category"`
 	Theme    string `json:"theme"`
 	Quote    string `json:"quote"`
-	Page     string `json:"page"`
+	Page     int    `json:"page"`
 }
 
 func ParseDataset(path string) ([]Doc, error) {
@@ -39,7 +40,12 @@ func ParseDataset(path string) ([]Doc, error) {
 		if item[0] == '-' {
 			r, _ := regexp.Compile("p.([0-9]{1,3})")
 			if r.MatchString(item) {
-				page := r.FindString(item)
+				ptxt := r.FindString(item)
+				ptxt = strings.Replace(ptxt, "p.", "", 1)
+				page, err := strconv.Atoi(ptxt)
+				if err != nil {
+					page = 0
+				}
 				quote := r.ReplaceAllString(item, "")
 				var out = Doc{Page: page, Quote: quote, Category: cat, Theme: theme}
 				output = append(output, out)
