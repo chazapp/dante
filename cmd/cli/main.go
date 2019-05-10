@@ -12,7 +12,7 @@ import (
 var (
 	Commands = []cli.Command{
 		{
-			Name:  "parse",
+			Name:  "print",
 			Usage: "Parses and output json format to stdin",
 			Flags: []cli.Flag{
 				cli.StringFlag{
@@ -29,13 +29,38 @@ var (
 				docs, err := tigbra.ParseDataset(c.String("file"))
 				if err != nil {
 					return err
-				} else {
-					for _, item := range docs {
-						json, _ := json2.Marshal(item)
-						fmt.Println(string(json))
-					}
+				}
+				for _, item := range docs {
+					json, _ := json2.Marshal(item)
+					fmt.Println(string(json))
 				}
 				return nil
+			},
+		},
+		{
+			Name:  "feed",
+			Usage: "Parses  and feed json format to given MongoDB",
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "db",
+					Usage: "The target Mongodb URI.",
+				},
+				cli.StringFlag{
+					Name:  "file, f",
+					Usage: "Path to the input file.",
+				},
+				cli.StringFlag{
+					Name:  "name, n",
+					Usage: "Name of the mongodb collection.",
+				},
+			},
+			Action: func(c *cli.Context) error {
+				docs, err := tigbra.ParseDataset(c.String("file"))
+				if err != nil {
+					return err
+				}
+				err = tigbra.FeedMongoDB(docs, c.String("db"), c.String("name"))
+				return err
 			},
 		},
 	}
