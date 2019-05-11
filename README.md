@@ -45,11 +45,11 @@ Example output:
 
 Store the results in a running mongodb instance.
 ```bash
-./main mongo --db mongodb://localhost:27017 --file dataset.txt --name "BookName"
+./dante-cli mongo --db mongodb://localhost:27017 --file dataset.txt --name "BookName"
 ```
 Store the results in a running ElasticSearch instance.
 ```bash
-./main elastic --db http://localhost:9200 --file dataset.txt --name "BookName"
+./dante-cli elastic --db http://localhost:9200 --file dataset.txt --name "BookName"
 ```
 
 ## Docker Orchestration
