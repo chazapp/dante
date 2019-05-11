@@ -1,4 +1,4 @@
-# Tigbra
+# Project Dante
 
 An ELK installation for class notes index and searching.
 
