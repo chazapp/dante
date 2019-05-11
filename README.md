@@ -32,8 +32,8 @@ A theme
 Print result to the standard output.
 ```bash
 $ GO111MODULE=on go mod vendor
-$ go build cmd/cli/main.go
-$ ./main print -f dataset.txt 
+$ cd /go/src/github.com/chazapp/dante/cmd/cli && go build -o dante-cli 
+$ ./dante-cli print -f dataset.txt 
 ```
 
 Example output: 
@@ -43,11 +43,31 @@ Example output:
   {"category":"1. A category name", "theme":"A theme","quote":"A citation","page":42}
 ``` 
 
-Feed the results to a running mongodb instance.
+Store the results in a running mongodb instance.
 ```bash
-./main feed --db mongodb://localhost:27017 --file dataset.txt --name "BookName"
+./main mongo --db mongodb://localhost:27017 --file dataset.txt --name "BookName"
+```
+Store the results in a running ElasticSearch instance.
+```bash
+./main elastic --db http://localhost:9200 --file dataset.txt --name "BookName"
 ```
 
+## Docker Orchestration
+The aim of the project is to provide visualization to data gathered in book quotes. These visualisations
+are provided by ElasticSearch and Kibana. To this effect, a `docker-compose.yml` is available.
+To start the infrastructure:    
+```bash
+$ docker-compose up
+Creating network "dante_default" with the default driver
+Creating dante_kibana_1         ... done
+Creating dante_elasticsearch_1  ... done
+Creating dante_cli_1            ... done
+'Compose: docker-compose.yml' has been deployed successfully.
+```
+The DanteCLI will create an index in ElasticSearch, then upload the processed dataset provided in the Dockerfile.
+Kibana is then available at http://localhost:5061 to create visualizations.  
+Warning: The current `docker-compose.yml` does not store the work written in Kibana yet. The visualizations have to be
+exported before killing the process. 
 
 ## Inspiration
 

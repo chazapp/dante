@@ -38,8 +38,8 @@ var (
 			},
 		},
 		{
-			Name:  "feed",
-			Usage: "Parses  and feed json format to given MongoDB",
+			Name:  "mongo",
+			Usage: "Parses  and stores json format to given MongoDB",
 			Flags: []cli.Flag{
 				cli.StringFlag{
 					Name:  "db",
@@ -59,7 +59,33 @@ var (
 				if err != nil {
 					return err
 				}
-				err = dante.FeedMongoDB(docs, c.String("db"), c.String("name"))
+				err = dante.MongoDB(docs, c.String("db"), c.String("name"))
+				return err
+			},
+		},
+		{
+			Name:  "elastic",
+			Usage: "Parses and stores json format to given ElasticSearch instance",
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  "db",
+					Usage: "The target ElasticSearch URI.",
+				},
+				cli.StringFlag{
+					Name:  "file, f",
+					Usage: "Path to the input file.",
+				},
+				cli.StringFlag{
+					Name:  "name, n",
+					Usage: "Name of the index",
+				},
+			},
+			Action: func(c *cli.Context) error {
+				docs, err := dante.ParseDataset(c.String("file"))
+				if err != nil {
+					return err
+				}
+				err = dante.ElasticSearch(docs, c.String("db"), c.String("name"))
 				return err
 			},
 		},
