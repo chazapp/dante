@@ -1,0 +1,20 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: golang:latest
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: GO111MODULE=on go mod vendor
+      - run:
+          name: Run tests
+          command: cd pkg && go test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
