@@ -1,5 +1,5 @@
 # Project Dante
-
+[![CircleCI](https://circleci.com/gh/chazapp/dante.svg?style=svg)](https://circleci.com/gh/chazapp/dante)  
 An ELK installation for class notes index and searching.
 
 ## Objectives
