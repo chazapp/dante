@@ -8,8 +8,13 @@ This project intends to provide Elastic Search and Kibana visualization for book
 Book text quotes are written and tagged in TXT, processed by the `pkg/parser` and serialized to JSON.
 These documents are then saved to a MongoDB instance to be indexed by ElasticSearch. 
 
-## Dataset
+## Requisites
+  - Docker  
+  You should only need Docker to test the project with ElasticSearch and Kibana.
+  - *Optional* Go 1.11
+  - *Optional* A running MongoDB instance
 
+## Dataset
 The dataset are not to be commited in the repository.  
 The input dataset TXT format is as follows (WIP):
 ```txt
@@ -28,6 +33,11 @@ A theme
 ```
 
 ## Usage
+
+Clone the repository in your `GOPATH`.
+```bash
+$ git clone git@github.com:/chazapp/dante $GOPATH/src/github.com/dante
+```  
 
 Print result to the standard output.
 ```bash
