@@ -3,10 +3,10 @@ package main
 import (
 	json2 "encoding/json"
 	"fmt"
+	"github.com/chazapp/tigbra/pkg"
 	"github.com/urfave/cli"
 	"log"
 	"os"
-	"tigbra/pkg"
 )
 
 var (
