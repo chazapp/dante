@@ -1,4 +1,4 @@
-package tigbra
+package dante
 
 import (
 	"bufio"
@@ -15,6 +15,9 @@ type Doc struct {
 	Page     int    `json:"page"`
 }
 
+// A naive Parser for the Quote format.
+// The input format is a working progress, we need to think
+// about a more durable format before writing the parser.
 func ParseDataset(path string) ([]Doc, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -37,22 +40,21 @@ func ParseDataset(path string) ([]Doc, error) {
 			cat = item
 			continue
 		}
-		if item[0] == '-' {
-			r, _ := regexp.Compile("p.([0-9]{1,3})")
-			if r.MatchString(item) {
-				ptxt := r.FindString(item)
-				ptxt = strings.Replace(ptxt, "p.", "", 1)
-				page, err := strconv.Atoi(ptxt)
-				if err != nil {
-					page = 0
-				}
-				quote := r.ReplaceAllString(item, "")
-				var out = Doc{Page: page, Quote: quote, Category: cat, Theme: theme}
-				output = append(output, out)
-			}
-		} else {
+		if item[0] != '-' {
 			theme = item
 			continue
+		}
+		r, _ := regexp.Compile("p.([0-9]{1,3})")
+		if r.MatchString(item) {
+			ptxt := r.FindString(item)
+			ptxt = strings.Replace(ptxt, "p.", "", 1)
+			page, err := strconv.Atoi(ptxt)
+			if err != nil {
+				page = 0
+			}
+			quote := r.ReplaceAllString(item, "")
+			var out = Doc{Page: page, Quote: quote, Category: cat, Theme: theme}
+			output = append(output, out)
 		}
 	}
 	return output, nil
