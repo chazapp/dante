@@ -3,7 +3,7 @@ package main
 import (
 	json2 "encoding/json"
 	"fmt"
-	"github.com/chazapp/tigbra/pkg"
+	"github.com/chazapp/dante/pkg"
 	"github.com/urfave/cli"
 	"log"
 	"os"
@@ -26,7 +26,7 @@ var (
 				},
 			},
 			Action: func(c *cli.Context) error {
-				docs, err := tigbra.ParseDataset(c.String("file"))
+				docs, err := dante.ParseDataset(c.String("file"))
 				if err != nil {
 					return err
 				}
@@ -55,11 +55,11 @@ var (
 				},
 			},
 			Action: func(c *cli.Context) error {
-				docs, err := tigbra.ParseDataset(c.String("file"))
+				docs, err := dante.ParseDataset(c.String("file"))
 				if err != nil {
 					return err
 				}
-				err = tigbra.FeedMongoDB(docs, c.String("db"), c.String("name"))
+				err = dante.FeedMongoDB(docs, c.String("db"), c.String("name"))
 				return err
 			},
 		},
