@@ -66,8 +66,16 @@ Creating dante_cli_1            ... done
 ```
 The DanteCLI will create an index in ElasticSearch, then upload the processed dataset provided in the Dockerfile.
 Kibana is then available at http://localhost:5601 to create visualizations.  
-Warning: The current `docker-compose.yml` does not store the work written in Kibana yet. The visualizations have to be
-exported before killing the process. 
+
+## Example visualizations
+Current vizualisations:  
+Quote repartition over pages:  
+![QuoteRepartition](https://imgur.com/nn9H6nS.png)  
+Quote containing "nous", "elle"
+![NousVSElle](https://i.imgur.com/os0JbAP.png)  
+Theme repartition:
+![ThemeRepartition](https://i.imgur.com/hs50iHL.png)  
+
 
 ## Inspiration
 
