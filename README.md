@@ -1,12 +1,12 @@
 # Project Dante
 [![CircleCI](https://circleci.com/gh/chazapp/dante.svg?style=svg)](https://circleci.com/gh/chazapp/dante)  
-An ELK installation for class notes index and searching.
+An ELK installation for book quote index and searching.
 
 ## Objectives
 
 This project intends to provide Elastic Search and Kibana visualization for books citations.
 Book text quotes are written and tagged in TXT, processed by the `pkg/parser` and serialized to JSON.
-These documents are then saved to a MongoDB instance to be indexed by ElasticSearch. 
+These documents are then saved to either MongoDB or ElasticSearch. 
 
 ## Requisites
   - Docker  
@@ -36,13 +36,13 @@ A theme
 
 Clone the repository in your `GOPATH`.
 ```bash
-$ git clone git@github.com:/chazapp/dante $GOPATH/src/github.com/dante
+$ git clone git@github.com:/chazapp/dante $GOPATH/src/github.com/chazapp/dante
 ```  
 
 Print result to the standard output.
 ```bash
 $ GO111MODULE=on go mod vendor
-$ cd /go/src/github.com/chazapp/dante/cmd/cli && go build -o dante-cli 
+$ cd /go/src/github.com/chazapp/dante && go build -o dante-cli cmd/cli
 $ ./dante-cli print -f dataset.txt 
 ```
 
