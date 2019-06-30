@@ -33,8 +33,7 @@ const mapping = `
 	}
 }`
 
-// Feed mongo DB connects to the :host, creates the collection :name
-// and adds the given docs.
+// Stores Docs in mongo DB, connects to the :host, creates the collection :name
 func MongoDB(docs []Doc, host string, name string) error {
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(host))
@@ -50,6 +49,7 @@ func MongoDB(docs []Doc, host string, name string) error {
 	return err
 }
 
+// Stores Docs in
 func ElasticSearch(docs []Doc, host string, name string) error {
 	fmt.Printf("Trying to reach ElasticSearch at %s...\n", host)
 	retries := 0
