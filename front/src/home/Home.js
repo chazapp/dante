@@ -3,11 +3,7 @@ import { withCookies, Cookies } from 'react-cookie';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import store from '../redux/store';
 import HeaderAppBar from '../common/HeaderAppBar';
-import { fetchSources } from '../redux/actions';
-import SourcesForm from '../common/SourcesForm';
-import SourcesList from '../common/SourcesList';
 
 /* const styles = {
   UserCard: {
@@ -46,6 +42,7 @@ class Home extends Component {
       <div>
         <HeaderAppBar />
         <p>Coming soon<br/>Dante Front-End</p>
+        <p>{token}</p>
       </div>
     );
   }
@@ -53,14 +50,11 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    email: state.profile.email,
-    error: state.error,
   };
 }
 
 Home.propTypes = {
   cookies: PropTypes.instanceOf(Cookies).isRequired,
-  sources: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 export default withCookies(connect(mapStateToProps)(Home));
