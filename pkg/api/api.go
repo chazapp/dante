@@ -25,6 +25,8 @@ func StartRESTAPI(port int, db string) error {
 	router.Use(JWTAuthMiddleware())
 	router.POST("/register", api.Register)
 	router.POST("/login", api.Login)
+	router.POST("/book", api.CreateBook)
+	router.GET("/books", api.GetBooks)
 	err = router.Run(addr)
 	return err
 }

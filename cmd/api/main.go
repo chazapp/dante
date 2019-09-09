@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/chazapp/dante/pkg/api"
-	"github.com/urfave/cli"
 	"github.com/joho/godotenv"
+	"github.com/urfave/cli"
 	"log"
 	"os"
 )

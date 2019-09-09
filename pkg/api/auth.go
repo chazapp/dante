@@ -2,7 +2,7 @@ package api
 
 import (
 	"context"
-	"github.com/chazapp/dante/pkg/api/db"
+	"github.com/chazapp/dante/pkg/db"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
