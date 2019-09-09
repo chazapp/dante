@@ -8,10 +8,10 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: cd api && GO111MODULE=on go mod vendor
+          command: GO111MODULE=on go mod vendor
       - run:
           name: Run tests
-          command: cd api/pkg && go test
+          command: cd pkg && go test
 
 workflows:
   version: 2
